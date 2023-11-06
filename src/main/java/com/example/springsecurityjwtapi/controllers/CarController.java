@@ -26,12 +26,22 @@ public class CarController {
 
     /* ============= SPRING CRUD METHODS ============ */
 
+    /**
+     * GET method that gives all the cars from the database.
+     * @return List<Car>
+     */
     @GetMapping("/cars")
     public List<Car> findAll(){
         log.info("REST request to find all cars");
         return this.carService.findAll();
     }
 
+
+    /**
+     * GET method that gives a car for a requested id.
+     * @param id
+     * @return
+     */
     @GetMapping("/cars/{id}")
     public ResponseEntity<Car> findById(@PathVariable Long id){
         log.info("REST request to find a Car by an id given");
@@ -39,8 +49,13 @@ public class CarController {
         return carOpt.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    /**
+     * POST method to create a new Car.
+     * @param car
+     * @return
+     */
     @PostMapping("/cars")
-    public ResponseEntity<Car> create(Car car){
+    public ResponseEntity<Car> create(@RequestBody Car car){
         log.info("REST request to create a new Car");
 
         if(car.getId() != null){
@@ -50,6 +65,11 @@ public class CarController {
         return ResponseEntity.ok(this.carService.save(car));
     }
 
+    /**
+     * PUT method to update an existing Car.
+     * @param car
+     * @return
+     */
     @PutMapping("/cars")
     public ResponseEntity<Car> update(@RequestBody Car car){
         log.info("REST request to update an existing Car");
@@ -60,6 +80,11 @@ public class CarController {
         return ResponseEntity.ok(this.carService.save(car));
     }
 
+    /**
+     * DELETE method to delete an existing car for an id given.
+     * @param id
+     * @return
+     */
     @DeleteMapping("/cars/{id}")
     public ResponseEntity<Car> delete(@PathVariable Long id){
         log.info("REST request to delete an existing car");
@@ -67,6 +92,10 @@ public class CarController {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * DELETE method to delete all the cars from the database.
+     * @return
+     */
     @DeleteMapping("/cars")
     public ResponseEntity<Car> deleteAll(){
         log.info("REST request to delete all the cars");
