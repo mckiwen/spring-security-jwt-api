@@ -37,6 +37,7 @@ public class JwtGenerator {
                 .setSigningKey(getSignatureSecretKey(secretKeyString))
                 .parseClaimsJws(token)
                 .getBody();
+        return claims.getSubject();
     }
 
     public boolean validateToken(String token){
