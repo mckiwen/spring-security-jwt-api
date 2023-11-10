@@ -1,10 +1,13 @@
 package com.example.springsecurityjwtapi.security;
 
+import com.example.springsecurityjwtapi.services.CarServiceImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
@@ -17,6 +20,8 @@ import java.util.Date;
 
 @Component
 public class JwtGenerator {
+
+    private final Logger log = LoggerFactory.getLogger(CarServiceImpl.class);
 
     @Value("${app.jwt.expiration-ms}")
     public long JWT_EXPIRATION;
@@ -55,7 +60,9 @@ public class JwtGenerator {
                     .parseClaimsJws(token);
             return true;
         } catch (Exception ex) {
-            throw new AuthenticationCredentialsNotFoundException("JWT was exprired or incorrect",ex.fillInStackTrace());
+            //throw new AuthenticationCredentialsNotFoundException("JWT was exprired or incorrect",ex.fillInStackTrace());
+            log.warn("Request Unauthorized: JWT request was exprired or incorrect");
+            return false;
         }
     }
 
