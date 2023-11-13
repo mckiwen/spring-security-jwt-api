@@ -177,7 +177,8 @@ insert into roles (id, name) VALUES (2, 'USER');
 
 ## Using Swagger
 
-Once you run the application, get the following URL.
+Once you run the application, get the following URL. Swagger provides all the information about the endpoints of the 
+API and their use cases.
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
