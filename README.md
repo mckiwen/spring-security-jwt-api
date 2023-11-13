@@ -164,7 +164,6 @@ To build and run the project, follow these steps:
 
 -> The application will be available at http://localhost:8080.
 
-```
 ## Run Spring Boot application
 ```
 mvn spring-boot:run
