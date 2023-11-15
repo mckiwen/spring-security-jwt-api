@@ -42,9 +42,15 @@ public class CarController {
      * @return List<Car>
      */
     @GetMapping("/cars")
-    public List<Car> findAll(){
+    public ResponseEntity<List<Car>> findAll() {
         log.info("REST request to find all cars");
-        return this.carService.findAll();
+        List<Car> listCar = this.carService.findAll();
+
+        if (listCar.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(listCar);
+        }
     }
 
 
