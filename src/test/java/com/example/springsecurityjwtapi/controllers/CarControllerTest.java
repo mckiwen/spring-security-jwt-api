@@ -89,6 +89,7 @@ public class CarControllerTest {
         headersFailed.setAccept(List.of(MediaType.APPLICATION_JSON));
         headersFailed.setBearerAuth("falseToken");
         System.out.println("Failed Request Headers " + headersFailed);
+
         HttpEntity<String> requestFailed = new HttpEntity<>("", headersFailed);
         ResponseEntity<List> responseFailed = testRestTemplate.exchange(
                 "/api/cars",
