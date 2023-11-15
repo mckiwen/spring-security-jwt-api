@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>spring-security-jwt-api</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>spring-security-jwt-api</name>
 	<description>Spring Boot API REST with JWT</description>
 	<properties>
