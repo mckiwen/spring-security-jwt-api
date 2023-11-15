@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    RoleService roleService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         user.setUsername(registerDTO.getUsername());
         user.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
 
-        Role roles = roleRepository.findByName("USER").get();
+        Role roles = roleService.findByName("USER").get();
         user.setRoles(Collections.singletonList(roles));
 
         userRepository.save(user);
