@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public void save(RegisterDTO registerDTO) {
+    public UserEntity save(RegisterDTO registerDTO) {
         UserEntity user = new UserEntity();
         user.setUsername(registerDTO.getUsername());
         user.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         Role roles = roleService.findByName("USER").get();
         user.setRoles(Collections.singletonList(roles));
 
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
 }

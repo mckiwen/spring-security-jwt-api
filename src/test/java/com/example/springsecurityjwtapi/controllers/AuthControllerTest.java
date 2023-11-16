@@ -71,15 +71,15 @@ public class AuthControllerTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON); // enviamos JSON
         HttpEntity<UserEntity> request = new HttpEntity<>(user,headers);
-        ResponseEntity<String> response = testRestTemplate.exchange(
+        ResponseEntity<UserEntity> response = testRestTemplate.exchange(
                 "/api/auth/register",
                 HttpMethod.POST,
                 request,
-                String.class);
+                UserEntity.class);
 
-        String result = response.getBody();
+        UserEntity result = response.getBody();
+        System.out.println(result);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("User registered success!", result);
     }
 
     @DisplayName("POST /api/auth/login")

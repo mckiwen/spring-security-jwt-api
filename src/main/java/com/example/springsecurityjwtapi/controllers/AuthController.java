@@ -52,13 +52,11 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterDTO registerDTO){
+    public ResponseEntity<UserEntity> register(@RequestBody RegisterDTO registerDTO){
         if(userService.existsByUsername(registerDTO.getUsername())){
-            return ResponseEntity.badRequest().body("Username is taken!");
+            return ResponseEntity.badRequest().build();
         }
-        userService.save(registerDTO);
-        return ResponseEntity.ok().body("User registered success!");
+        UserEntity user = userService.save(registerDTO);
+        return ResponseEntity.ok().body(user);
     }
-
-
 }

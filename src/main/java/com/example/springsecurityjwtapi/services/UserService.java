@@ -9,5 +9,5 @@ public interface UserService {
     Optional<UserEntity> findByUsername(String username);
     Boolean existsByUsername(String username);
 
-    void save(RegisterDTO registerDTO);
+    UserEntity save(RegisterDTO registerDTO);
 }
