@@ -57,7 +57,7 @@ public class JwtGenerator {
             return true;
         } catch (Exception ex) {
             //throw new AuthenticationCredentialsNotFoundException("JWT was exprired or incorrect",ex.fillInStackTrace());
-            log.warn("Request Unauthorized: JWT request was exprired or incorrect");
+            log.warn("Request Unauthorized: JWT request was expired or incorrect");
             return false;
         }
     }

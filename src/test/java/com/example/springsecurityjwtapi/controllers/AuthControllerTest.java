@@ -112,11 +112,11 @@ public class AuthControllerTest {
 
         user.setPassword("0000");
         HttpEntity<UserEntity> requestError = new HttpEntity<>(user,headers);
-        ResponseEntity<AuthResponseDTO> responseError = testRestTemplate.exchange(
+        ResponseEntity<Void> responseError = testRestTemplate.exchange(
                 "/api/auth/login",
                 HttpMethod.POST,
                 requestError,
-                AuthResponseDTO.class);
+                Void.class);
         
         assertEquals(HttpStatus.UNAUTHORIZED, responseError.getStatusCode());
     }
