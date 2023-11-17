@@ -91,11 +91,11 @@ public class CarControllerTest {
         System.out.println("Failed Request Headers " + headersFailed);
 
         HttpEntity<String> requestFailed = new HttpEntity<>("", headersFailed);
-        ResponseEntity<List> responseFailed = testRestTemplate.exchange(
+        ResponseEntity<Void> responseFailed = testRestTemplate.exchange(
                 "/api/cars",
                 HttpMethod.GET,
                 requestFailed,
-                List.class);
+                Void.class);
         assertEquals(HttpStatus.UNAUTHORIZED, responseFailed.getStatusCode());
     }
 }
